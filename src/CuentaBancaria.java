@@ -25,7 +25,7 @@ public class CuentaBancaria {
         this.saldo = saldo;
     }
     public String describir(){
-        return "Cuenta " + numeroCuentas + "\nTitular "+ titular +"\nSaldo: $" + saldo;
+        return "| Cuenta " + numeroCuentas + " | Titular "+ titular +"| Saldo: $" + saldo;
     }
     public double calcularComision(){
         return 0.0;

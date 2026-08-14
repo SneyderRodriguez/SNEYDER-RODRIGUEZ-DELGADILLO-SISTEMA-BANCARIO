@@ -10,7 +10,7 @@ public class CuentaAhorros extends CuentaBancaria{
 
     @Override
     public String describir() {
-        return super.describir() + "Tasa Mensual: " + tasaInteresMensual;
+        return super.describir() + " | Tasa Mensual: " + tasaInteresMensual + "%";
     }
 
     public double calcularComision(){
