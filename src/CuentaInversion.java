@@ -3,7 +3,32 @@ public class CuentaInversion extends CuentaBancaria {
     private int plazoMeses;
     private double penalizacionRetiroAnticipado;
 
-    public CuentaInversion(String numeroCuentas, String titular, double saldo, double tasaAnual, int plazoMeses, double limiteSobregiro) {
+    public CuentaInversion(String numeroCuentas, String titular, double saldo, double tasaAnual, int plazoMeses, double penalizacionRetiroAnticipado) {
         super(numeroCuentas, titular, saldo);
+        this.tasaAnual = tasaAnual;
+        this.plazoMeses = plazoMeses;
+        this.penalizacionRetiroAnticipado = penalizacionRetiroAnticipado;
+    }
+
+    @Override
+    public String describir() {
+        return super.describir() + " | Plazo: " + plazoMeses + " meses" + " | Tasa Anual: " + tasaAnual + "%";
+    }
+
+    @Override
+    public double calcularComision() {
+        return penalizacionRetiroAnticipado;
+    }
+
+    @Override
+    public void realizarRetiro(double monto) {
+        double penalizacionDescuento = getSaldo() - monto - penalizacionRetiroAnticipado;
+        setSaldo(penalizacionDescuento);
+    }
+    public double calcularComision(int mesesTranscurridos) {
+        if (mesesTranscurridos >= plazoMeses) {
+            return 0.0;
+        }
+        return penalizacionRetiroAnticipado;
     }
 }
